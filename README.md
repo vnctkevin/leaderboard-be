@@ -25,11 +25,39 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Setup Environment Variables
+
+```bash
+$ cp .env.example .env
+```
+
+## Update Env with the Database credentials
+
+```bash
+DB_HOST=your_host
+DB_PORT=your_port
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+DB_NAME=your_database_name
+```
+
 ## Project setup
 
 ```bash
 $ npm install
+
+$ npm run build
+
+$ npm run migration:run
+
+$ npm run start:dev
 ```
+
+## API Swagger
+
+For running the API Swagger for complete practical documentation of how to login, register, submit score, and get leaderboard, you can access the following URL:
+
+http://localhost:3000/api
 
 ## Compile and run the project
 
