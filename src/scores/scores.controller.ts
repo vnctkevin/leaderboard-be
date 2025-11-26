@@ -37,10 +37,11 @@ export class ScoresController {
         return this.scoresService.submitScore(targetUser.id, submitScoreDto.score);
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get('leaderboard')
-    @ApiOperation({ summary: 'Get top 10 scores' })
-    @ApiResponse({ status: 200, description: 'Return top 10 scores.' })
-    async getLeaderboard() {
-        return this.scoresService.getLeaderboard();
+    @ApiOperation({ summary: 'Get top 10 scores for authenticated user' })
+    @ApiResponse({ status: 200, description: 'Return top 10 scores for the user.' })
+    async getLeaderboard(@Request() req) {
+        return this.scoresService.getLeaderboard(req.user.userId);
     }
 }

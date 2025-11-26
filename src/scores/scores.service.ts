@@ -15,16 +15,17 @@ export class ScoresService {
         return this.scoresRepository.save(newScore);
     }
 
-    async getLeaderboard() {
+    async getLeaderboard(userId: string) {
         return this.scoresRepository.find({
+            where: { userId },
             order: { score: 'DESC' },
             take: 10,
             relations: ['user'],
             select: {
                 user: {
                     username: true,
-                },
-                score: true,
+                }
+
             }
         });
     }
