@@ -57,7 +57,7 @@ $ npm run start:dev
 
 For running the API Swagger for complete practical documentation of how to login, register, submit score, and get leaderboard, you can access the following URL:
 
-http://localhost:3000/api
+http://localhost:3000/docs
 
 ## Compile and run the project
 
