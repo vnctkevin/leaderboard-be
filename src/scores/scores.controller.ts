@@ -44,4 +44,27 @@ export class ScoresController {
     async getLeaderboard(@Request() req) {
         return this.scoresService.getLeaderboard(req.user.userId);
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('user/leaderboard')
+    @ApiOperation({ summary: 'Get the ranking of all users highest scores, admin user only' })
+    @ApiResponse({ status: 200, description: 'Return top 10 scores for the user.' })
+    async getUserLeaderboard(@Request() req) {
+        if (!req.user.isAdmin) {
+            throw new ForbiddenException('You are not allowed to access this endpoint');
+        }
+        return this.scoresService.getUserLeaderboard();
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('scores/leaderboard')
+    @ApiOperation({ summary: 'Get the ranking of all users and scores, admin user only' })
+    @ApiResponse({ status: 200, description: 'Return top 10 scores for the user.' })
+    async getAllLeaderboard(@Request() req) {
+        if (!req.user.isAdmin) {
+            throw new ForbiddenException('You are not allowed to access this endpoint');
+        }
+        return this.scoresService.getAllLeaderboard();
+    }
+
 }
